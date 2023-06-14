@@ -1,3 +1,5 @@
+import CarsSearch from "../components/CarSearch";
+
 const Header = () => {
   return (
     <header class="p-3 text-bg-dark">
@@ -26,6 +28,7 @@ const Header = () => {
               </a>
             </li>
           </ul>
+        <CarsSearch></CarsSearch>
 
           <div class="text-end">
             <button type="button" class="btn btn-outline-light me-2">
