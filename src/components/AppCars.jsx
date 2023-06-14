@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { deleteCar, getCars, postCars } from "../service/carsService";
-import { Link } from "react-router-dom";
+import { deleteCar, getCars } from "../service/carsService";
 import { useDispatch, useSelector } from "react-redux";
 import { setCars, removeCar } from "../store/cars/slice";
 import selectCarsValue from "../store/cars/selector";
+import CarRow from "./CarRow";
 
 const AppCars = () => {
   const dispatch = useDispatch();
@@ -20,7 +20,7 @@ const AppCars = () => {
     return "No";
   };
 
-  const deleteACar = (id) => {
+  const deleteCar = (id) => {
     deleteCar(id);
     dispatch(removeCar(id));
   };
@@ -42,28 +42,7 @@ const AppCars = () => {
       </thead>
       <tbody>
         {cars.map((car, index) => (
-          <tr key={index}>
-            <td>{car.brand}</td>
-            <td>{car.model}</td>
-            <td>{car.year}</td>
-            <td>{car.maxSpeed}</td>
-            <td>{isAutomatic(car.isAutomatic)}</td>
-            <td>{car.engine}</td>
-            <td>{car.numberOfDoors}</td>
-            <td>
-              <Link className="btn btn-primary" to={`/edit/${car.id}`}>
-                Select
-              </Link>
-            </td>
-            <td>
-              <button
-                className="btn btn-primary"
-                onClick={() => deleteACar(car.id)}
-              >
-                -
-              </button>
-            </td>
-          </tr>
+          <CarRow car={car} index={index} isAutomatic={isAutomatic} deleteCar={deleteCar}></CarRow>
         ))}
       </tbody>
     </table>
