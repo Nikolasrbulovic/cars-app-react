@@ -6,7 +6,6 @@ import AppCars from "./components/AppCars";
 function App() {
   return (
     <div>
-     
       <Header></Header>
       <Routes>
         <Route index path="/cars" element={<AppCars />}></Route>
